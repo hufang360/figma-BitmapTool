@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700');
+
+/* 原始css：https://static.figma.com/api/figma-extension-api-0.0.1.css */
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #444;
+  margin: 12px 12px;
+  outline: none;
+}
+
+button {
+  font: inherit;
+  background-color: transparent;
+  display: block;
+  text-align: center;
+  height: 30px;
+  line-height: 28px;
+  max-width: 180px;
+  padding: 0 12px;
+  color: #444;
+  font-weight: 400;
+  background-color: transparent;
+  box-sizing: border-box;
+  border: 1px solid #d4d4d4;
+  border-radius: 15px;
+  outline: none;
+}
+
+button:active {
+  background-color: rgba(0, 0, 0, .1);
+}
+
+button:focus {
+  border: 1px solid #30c2ff;
+  line-height: 26px;
+  padding: 0 11px;
+}
+
+button.primary {
+  color: #fff;
+  background-color: #30c2ff;
+  border-color: #30c2ff;
+}
+
+button.primary:active {
+  background-color: #30afe6;
+  border-color: #30afe6;
+}
+
+button.primary:focus {
+  border: 2px solid rgba(0, 0, 0, .2);
+}

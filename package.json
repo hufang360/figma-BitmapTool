@@ -1,0 +1,29 @@
+{
+  "name": "bitmaptool",
+  "version": "1.0.0",
+  "description": "Extend some bitmap control",
+  "main": "dist/code.js",
+  "devDependencies": {
+    "css-loader": "^5.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-inline-source-plugin": "^1.0.0-beta.2",
+    "html-webpack-plugin": "^4.5.0",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.11",
+    "typescript": "^4.1.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "scripts": {
+    "build": "webpack",
+    "build:watch": "webpack --mode=development --watch",
+    "release": "npx webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hufang360/figma-BitmapTool.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
