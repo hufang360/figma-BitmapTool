@@ -26,13 +26,13 @@ figma.ui.onmessage = async (msg) => {
     case "sliceToGif":  sliceToGif(args); break
     case "btnSliceToPng": sliceToPng();  break
     case "btnGroupSlice":  groupSlice(); break
-    case "nineConstraints": nineConstraints(); break;
+    case "btnNineConstraints": nineConstraints(); break;
     
     case "btnCornerSmoothing": cornerSmoothing();  break
     case "btnRectBox": getRectBox();  break
     case "btnComponentToFrame": componentToFrame();  break
-    case "selectExportable": selectExportable();  break
-    case "selectText": selectText();  break
+    case "btnSelectExportable": selectExportable();  break
+    case "btnSelectText": selectText();  break
 
     
     
@@ -336,7 +336,7 @@ function createNineSlice(myArgs){
   
   let slice:BaseNode;
   let slices = []
-  for(var i=0; i<9; i++){
+  for(var i=0; i<0; i++){
     if (i == 0) {
         x = 0;
         y = 0;
@@ -394,13 +394,72 @@ function createNineSlice(myArgs){
     slice.x = rect.x + x;
     slice.y = rect.y + y;
     slice.name = prefixZero(i+1,2).toString();
-    rect.parent.insertChild(index+1, slice)
-    slices.push(slice)
+    rect.parent.insertChild(index+1, slice);
+    slices.push(slice);
   }
+
+  let rect2:VectorNode = figma.createVector();
+  rect2.resize(w,h);
+  rect2.cornerSmoothing = 1;
+  rect2.fills = [];
+  rect2.dashPattern = [0,1]
+  rect2.strokeAlign = "CENTER";
+  rect2.strokeCap = "ROUND";
+  rect2.strokeJoin = "ROUND";
+  rect2.strokeMiterLimit = 4;
+  rect2.strokeWeight = 0.5;
+  rect2.strokes = [{type: "SOLID", visible: true, opacity: 1, blendMode: "NORMAL", color: {r: 1, g: 0.33725491166114807, b: 0.26274511218070984}}];
+  rect2.vectorNetwork = getNineVector(rect.width,rect.height, top, bottom, left, right);
+  rect2.x = rect.x;
+  rect2.y = rect.y;
+  rect2.name = "[BitmapTool]9SlicePreview";
+  rect.parent.insertChild(index+1, rect2);
 
   // 选中切片
   if( slices.length )
     figma.currentPage.selection = slices
+}
+function getNineVector(width, height, up, bottom, left, right){
+  let v:VectorRegion = {windingRule: "NONZERO", loops: [[ 0, 1, 8, 9, 2, 3, 6, 7 ]]};
+  return {
+      vertices: [
+          getVectorVertex(0, 0),
+          getVectorVertex(width, 0),
+          getVectorVertex(width, height),
+          getVectorVertex(0, height),
+          getVectorVertex(left, 0),
+          getVectorVertex(left, height),
+          getVectorVertex(width-right, 0),
+          getVectorVertex(width-right, height),
+          getVectorVertex(0, up),
+          getVectorVertex(width, up),
+          getVectorVertex(0, height-bottom),
+          getVectorVertex(width, height-bottom)
+      ],
+      segments: [
+          getVectorSegments(0, 4),
+          getVectorSegments(4, 1),
+          getVectorSegments(2, 5),
+          getVectorSegments(5, 3),
+          getVectorSegments(4, 5),
+          getVectorSegments(6, 7),
+          getVectorSegments(3, 8),
+          getVectorSegments(8, 0),
+          getVectorSegments(1, 9),
+          getVectorSegments(9, 2),
+          getVectorSegments(8, 9),
+          getVectorSegments(10, 11)
+      ],
+      regions: [v]
+    }
+}
+function getVectorVertex(x=0, y=0){
+  let v:VectorVertex = { x: x, y: y, strokeCap: "ROUND", strokeJoin: "ROUND", cornerRadius: 0, handleMirroring: "NONE" };
+  return v;
+}
+function getVectorSegments(start=0, end=11){
+  let v:VectorSegment = { start: start, end: end, tangentStart: { x: 0, y: 0 }, tangentEnd: { x: 0, y: 0 } };
+  return v;
 }
 
 // 组内切片

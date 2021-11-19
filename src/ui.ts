@@ -78,7 +78,13 @@ onmessage = (event) => {
 
 // --------------------
 // 为按钮添加事件
-let btnNames = ["btnCornerSmoothing", "btnGroupSlice", "btnRectBox", "btnComponentToFrame"]
+let btnNames = [
+    "btnGroupSlice", 
+    "btnCornerSmoothing", "btnComponentToFrame",
+    "btnSelectExportable", "btnSelectText",
+    "btnRectBox", 
+    "btnNineConstraints"
+]
 for (const n of btnNames) {
     document.getElementById(n).onclick = () => { parent.postMessage({ pluginMessage: [n, []] }, '*'); }
 }
@@ -120,20 +126,6 @@ document.getElementById('btnNineSlice').onclick = () => {
     if (!left) { left=8; inputLeft.value="8"; };
     if (!right) { right=8; inputRight.value="8"; };
     postMsg("createNineSlice", [top, bottom, left, right]);
-  }
-
-document.getElementById('btnNineConstraints').onclick = () => {
-    postMsg("nineConstraints");
-}
-
-
-// 选择可导出项
-document.getElementById('btnSelectExportable').onclick = () => {
-    postMsg("selectExportable");
-}
-// 选择文本框
-document.getElementById('btnSelectText').onclick = () => {
-    postMsg("selectText");
 }
 
 
@@ -224,18 +216,18 @@ function copyText(msg) {
 
 
 // 偏移所选项
-const oInputDisdance = document.getElementById('inputDisdance') as HTMLInputElement
+const oInputNudge = document.getElementById('inputNudge') as HTMLInputElement
 document.getElementById('btnUp').onclick = () => {
-    nudgeSelection(oInputDisdance.value, "up")
+    nudgeSelection(oInputNudge.value, "up")
 }
 document.getElementById('btnDown').onclick = () => {
-    nudgeSelection(oInputDisdance.value, "down")
+    nudgeSelection(oInputNudge.value, "down")
 }
 document.getElementById('btnLeft').onclick = () => {
-    nudgeSelection(oInputDisdance.value, "left")
+    nudgeSelection(oInputNudge.value, "left")
 }
 document.getElementById('btnRight').onclick = () => {
-    nudgeSelection(oInputDisdance.value, "right")
+    nudgeSelection(oInputNudge.value, "right")
 }
 function nudgeSelection(pad, op:string){
     postMsg('nudgeSelection',[pad, op])

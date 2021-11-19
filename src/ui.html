@@ -4,7 +4,7 @@
 
 <!-- 面板文字提示 -->
 <div id="msgBoxParent" style="display:none" ><div id="msgBox" class="badge badge-pill text-wrap text-muted px-1"></div></div>
-<div id="lottieContain" style="display:''" ></div>
+<div id="lottieContain" style="display:'' " ></div>
 
 
 <div class="accordion">
@@ -13,7 +13,7 @@
   <!-- 常用 -->
   <div class="accordion-item rounded-0" style="padding-left: 0;">
     <div class="card-header text-sm-left text-muted px-1 py-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">常用</div>
-    <div id="collapse1" class="collapse show">
+    <div id="collapse1" class="collapse">
       <div class="accordion-body px-1 py-1">
 
         <!-- 图片等比缩放 -->
@@ -76,7 +76,7 @@
   <!--  其它 -->
   <div class="accordion-item">
     <div class="card-header text-sm-left text-muted px-1 py-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">其它</div>
-    <div id="collapse2" class="collapse">
+    <div id="collapse2" class="collapse  show">
       <div class="card-body px-1 py-1">
 
         <!-- 位置偏移 -->
@@ -93,7 +93,7 @@
               <button id="btnLeft" class="btn btn-outline-secondary btn-sm mb-1 rounded-pill border-0" style="width: 50px;" >←</button>
               <!-- input -->
               <div class="input-group input-group-sm mb-1" style="width: 50px;">
-                <input id="inputDisdance" type="text" value="10" class="form-control rounded-pill" style="text-align:center; vertical-align:middel;">
+                <input id="inputNudge" type="text" value="10" class="form-control rounded-pill" style="text-align:center; vertical-align:middel;">
               </div>
               <!--  →-->
               <button id="btnRight" class="btn btn-outline-secondary btn-sm mb-1 rounded-pill border-0" style="width: 50px;" >→</button>
@@ -107,7 +107,7 @@
 
 
         <!-- 9切片 -->
-        <!-- <div class="mb-2">
+        <div class="mb-2">
           <div class="badge px-0 text-muted">9切片</div>
           <div class="mb-1">
             <div class="input-group input-group-sm">
@@ -129,7 +129,7 @@
             <button id="btnNineSlice" class="btn btn-outline-secondary btn-sm border" style="width: 112px;" >划分9切片</button>
             <button id="btnNineConstraints" class="btn btn-outline-secondary btn-sm border" style="width: 112px;" title="设置9张位图的Constraints属性，使9切片图能自适应">约束</button>
           </div>
-        </div> -->
+        </div>
 
         <!-- 导入lottie -->
         <div class="mb-2">
