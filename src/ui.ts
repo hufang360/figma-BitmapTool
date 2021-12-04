@@ -82,10 +82,9 @@ let btnNames = [
     "btnGroupSlice", 
     "btnCornerSmoothing", "btnComponentToFrame",
     "btnSelectExportable", "btnSelectText",
-    "btnRectBox", 
-    "btnNineConstraints"
+    "btnRectBox"
 ]
-for (const n of btnNames) {
+for (let n of btnNames) {
     document.getElementById(n).onclick = () => { parent.postMessage({ pluginMessage: [n, []] }, '*'); }
 }
 
@@ -111,22 +110,22 @@ document.getElementById('btnSlice').onclick = () => {
   postMsg("createSlice", [row, col]);
 }
 
-// 生成9切片
-document.getElementById('btnNineSlice').onclick = () => {
-    let inputTop = document.querySelector('#inputNineTop') as HTMLInputElement;
-    let inputBottom = document.querySelector('#inputNineBottom') as HTMLInputElement;
-    let inputLeft = document.querySelector('#inputNineLeft') as HTMLInputElement;
-    let inputRight = document.querySelector('#inputNineRight') as HTMLInputElement;
-    let top = parseInt(inputTop.value);
-    let bottom = parseInt(inputBottom.value);
-    let left = parseInt(inputLeft.value);
-    let right = parseInt(inputRight.value);
-    if (!top) { top=8; inputTop.value="8"; };
-    if (!bottom) { bottom=8; inputBottom.value="8"; };
-    if (!left) { left=8; inputLeft.value="8"; };
-    if (!right) { right=8; inputRight.value="8"; };
-    postMsg("createNineSlice", [top, bottom, left, right]);
-}
+// // 生成9切片
+// document.getElementById('btnNineSlice').onclick = () => {
+//     let inputTop = document.querySelector('#inputNineTop') as HTMLInputElement;
+//     let inputBottom = document.querySelector('#inputNineBottom') as HTMLInputElement;
+//     let inputLeft = document.querySelector('#inputNineLeft') as HTMLInputElement;
+//     let inputRight = document.querySelector('#inputNineRight') as HTMLInputElement;
+//     let top = parseInt(inputTop.value);
+//     let bottom = parseInt(inputBottom.value);
+//     let left = parseInt(inputLeft.value);
+//     let right = parseInt(inputRight.value);
+//     if (!top) { top=8; inputTop.value="8"; };
+//     if (!bottom) { bottom=8; inputBottom.value="8"; };
+//     if (!left) { left=8; inputLeft.value="8"; };
+//     if (!right) { right=8; inputRight.value="8"; };
+//     postMsg("createNineSlice", [top, bottom, left, right]);
+// }
 
 
 // 原图大小

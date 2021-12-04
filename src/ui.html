@@ -13,7 +13,7 @@
   <!-- 常用 -->
   <div class="accordion-item rounded-0" style="padding-left: 0;">
     <div class="card-header text-sm-left text-muted px-1 py-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">常用</div>
-    <div id="collapse1" class="collapse">
+    <div id="collapse1" class="collapse show">
       <div class="accordion-body px-1 py-1">
 
         <!-- 图片等比缩放 -->
@@ -21,7 +21,7 @@
           <span class="badge px-0 text-muted">位图缩放</span>
           <div class="input-group input-group-sm" style="width: 230px;">
             <input id="imageSize" type="text" class="form-control" value=1 placeholder="请输入整数倍" title="每帧延迟数（毫秒）">
-            <button id="btnImageSize" class="btn btn-outline-secondary  border" title="缩放比">缩放</button>
+            <button id="btnImageSize" type="button" class="btn btn-outline-secondary  border" title="缩放比">缩放</button>
           </div>
           <div class="d-flex flex-row">
             <div class="form-check form-control-sm">
@@ -41,7 +41,7 @@
               <input type="text" id="inputRow" value="1" class="form-control">
               <span class="input-group-text text-muted">列</span>
               <input type="text" id="inputCol" value="1" class="form-control">
-              <button id="btnSlice" class="btn btn-outline-secondary  border">划分</button>
+              <button id="btnSlice" type="button" class="btn btn-outline-secondary  border">划分</button>
           </div>
         </div>
 
@@ -50,7 +50,7 @@
           <span class="badge px-0 text-muted">Gif</span>
           <div class="input-group input-group-sm mb-1" style="width: 230px;">
             <input type="text" class="form-control" id="inputDelay" value=100 placeholder="每帧延迟数（毫秒）" title="每帧延迟数（毫秒）">
-            <button id="btnSliceToGif" class="btn btn-outline-secondary  border" title="切片转gif">生成</button>
+            <button id="btnSliceToGif" type="button" class="btn btn-outline-secondary  border" title="切片转gif">生成</button>
           </div>
         </div>
 
@@ -58,12 +58,12 @@
           <div class="mb-2">
             <span class="badge px-0 text-muted">…</span>
             <div class="mb-1">
-              <button id="btnGroupSlice" class="btn btn-outline-secondary btn-sm mr-1 border"style="width: 112px;" >按组切片</button>
-              <button id="btnSliceToPng" class="btn btn-outline-secondary btn-sm mr-1 border" style="width: 112px;" >切片转png</button>
+              <button id="btnGroupSlice" type="button" class="btn btn-outline-secondary btn-sm mr-1 border"style="width: 112px;" >按组切片</button>
+              <button id="btnSliceToPng" type="button" class="btn btn-outline-secondary btn-sm mr-1 border" style="width: 112px;" >切片转png</button>
             </div>
             <div class="mb-1">
-              <button id="btnCornerSmoothing" class="btn btn-outline-secondary btn-sm mr-1 border" style="width: 112px;" >5px圆角</button>
-              <button id="btnComponentToFrame" class="btn btn-outline-secondary btn-sm mr-1 border" style="width: 112px;" >组件转画框</button>
+              <button id="btnCornerSmoothing" type="button" class="btn btn-outline-secondary btn-sm mr-1 border" style="width: 112px;" >5px圆角</button>
+              <button id="btnComponentToFrame" type="button" class="btn btn-outline-secondary btn-sm mr-1 border" style="width: 112px;" >组件转画框</button>
             </div>
           </div>
 
@@ -76,7 +76,7 @@
   <!--  其它 -->
   <div class="accordion-item">
     <div class="card-header text-sm-left text-muted px-1 py-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">其它</div>
-    <div id="collapse2" class="collapse  show">
+    <div id="collapse2" class="collapse">
       <div class="card-body px-1 py-1">
 
         <!-- 位置偏移 -->
@@ -85,29 +85,29 @@
           <div>
             <!--  ↑ -->
             <div style="padding-left: 50;">
-              <button id="btnUp" class="btn btn-outline-secondary btn-sm mb-1 rounded-pill border-0" style="width: 50px;" >↑</button>
+              <button id="btnUp" type="button" class="btn btn-outline-secondary btn-sm mb-1 rounded-pill border-0" style="width: 50px;" >↑</button>
             </div>
             <!-- ←  input  →-->
             <div style="display: flex;flex-direction: row; flex:0;">
               <!-- ← -->
-              <button id="btnLeft" class="btn btn-outline-secondary btn-sm mb-1 rounded-pill border-0" style="width: 50px;" >←</button>
+              <button id="btnLeft" type="button" class="btn btn-outline-secondary btn-sm mb-1 rounded-pill border-0" style="width: 50px;" >←</button>
               <!-- input -->
               <div class="input-group input-group-sm mb-1" style="width: 50px;">
                 <input id="inputNudge" type="text" value="10" class="form-control rounded-pill" style="text-align:center; vertical-align:middel;">
               </div>
               <!--  →-->
-              <button id="btnRight" class="btn btn-outline-secondary btn-sm mb-1 rounded-pill border-0" style="width: 50px;" >→</button>
+              <button id="btnRight" type="button" class="btn btn-outline-secondary btn-sm mb-1 rounded-pill border-0" style="width: 50px;" >→</button>
             </div>
             <!--  ↓ -->
             <div style="padding-left: 50;">
-              <button id="btnDown" class="btn btn-outline-secondary btn-sm mb-1 rounded-pill border-0" style="width: 50px;" >↓</button>
+              <button id="btnDown" type="button" class="btn btn-outline-secondary btn-sm mb-1 rounded-pill border-0" style="width: 50px;" >↓</button>
             </div>
           </div>
         </div>
 
 
         <!-- 9切片 -->
-        <div class="mb-2">
+        <!-- <div class="mb-2">
           <div class="badge px-0 text-muted">9切片</div>
           <div class="mb-1">
             <div class="input-group input-group-sm">
@@ -126,17 +126,17 @@
             </div>
           </div>
           <div class="mb-1">
-            <button id="btnNineSlice" class="btn btn-outline-secondary btn-sm border" style="width: 112px;" >划分9切片</button>
-            <button id="btnNineConstraints" class="btn btn-outline-secondary btn-sm border" style="width: 112px;" title="设置9张位图的Constraints属性，使9切片图能自适应">约束</button>
+            <button id="btnNineSlice" type="button" class="btn btn-outline-secondary btn-sm border" style="width: 112px;" >划分9切片</button>
+            <button id="btnNineConstraints" type="button" class="btn btn-outline-secondary btn-sm border" style="width: 112px;" title="设置9张位图的Constraints属性，使9切片图能自适应">约束</button>
           </div>
-        </div>
+        </div> -->
 
         <!-- 导入lottie -->
         <div class="mb-2">
           <span class="badge px-0 text-muted">导入lottie序列帧</span>
           <div class="input-group input-group-sm mb-1" style="width: 230px;">
             <input type="text" id="inputLottie" placeholder="https://" class="form-control" title="json文件地址">
-            <button id="btnlottie" class="btn btn-outline-secondary border">导入</button>
+            <button id="btnlottie" type="button" class="btn btn-outline-secondary border">导入</button>
           </div>
         </div>
 
@@ -144,11 +144,11 @@
         <div class="mb-2">
           <span class="badge px-0 text-muted">…</span>
           <div class="mb-1">
-            <button id="btnSelectExportable"class="btn btn-outline-secondary btn-sm border" style="width: 112px;">选中导出项</button>
-            <button id="btnSelectText" class="btn btn-outline-secondary btn-sm border" style="width: 112px;">选中文本框</button>
+            <button id="btnSelectExportable" type="button" class="btn btn-outline-secondary btn-sm border" style="width: 112px;">选中导出项</button>
+            <button id="btnSelectText" type="button" class="btn btn-outline-secondary btn-sm border" style="width: 112px;">选中文本框</button>
           </div>
           <div>
-            <button id="btnRectBox" class="btn btn-outline-secondary btn-sm border" style="width: 112px;">位置信息</button>
+            <button id="btnRectBox" type="button" class="btn btn-outline-secondary btn-sm border" style="width: 112px;">位置信息</button>
           </div>
         </div>
 
@@ -165,13 +165,5 @@
 <div id=clipboardBox></div>
 
 
-<style type="text/css">
-  .input-group-xs>.form-control,
-  .input-group-xs>.input-group-addon,
-  .input-group-xs>.input-group-btn>.btn {
-      height: 22px;
-      padding: 1px 5px;
-      font-size: 12px;
-      line-height: 1.5;
-  }
-</style>
+<!-- <style type="text/css">
+</style> -->
