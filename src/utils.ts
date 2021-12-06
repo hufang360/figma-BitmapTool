@@ -2,7 +2,7 @@ import GIF from './lib/gif'
 
 class GifHelper {
   // 生成gif
-  static createGif(imgDatas: any[], gifName: string, delay: any){
+  static createGif(imgDatas: any[], gifName: string, delays: any[]){
     // js转base64：http://base64online.org/encode/
     // https://imgss.github.io/demo/gif/gif.js
     // https://imgss.github.io/demo/gif/gif.worker.js
@@ -14,7 +14,7 @@ class GifHelper {
     });
     for (const img of imgDatas) {
         gif.addFrame(img['img'], {
-            delay: delay
+          delay: delays.shift()
         });
     }
 

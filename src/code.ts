@@ -282,7 +282,6 @@ function createSlice(myArgs){
     rect.parent.name = rect.name
   }
 
-  let index = findNodeIndex(rect)
   let oneW = rect.width/col
   let oneH = rect.height/row
   let total = row * col
@@ -300,7 +299,7 @@ function createSlice(myArgs){
     else
       slice.name = rect.name + " / " + prefixZero(i+1,3)
 
-    rect.parent.insertChild(index+1, slice)
+    rect.parent.appendChild(slice)
     slices.push(slice)
   }
 
@@ -798,10 +797,12 @@ function sliceToPng(){
 function sliceToGif(myArgs){
   if (figma.currentPage.selection.length == 0){ showMsg("请先选中切片",1000); return; }
   
-  let delay = myArgs[0]
-  let total = figma.currentPage.selection.length
-  for (let i=0;i<total; i++) {
-    const rect = figma.currentPage.selection[i] as RectangleNode
+  let total = figma.currentPage.selection.length;
+  let delay = myArgs[0];
+  let selection = sortByChildIndex(figma.currentPage.selection);
+
+  for (let i=0;i<selection.length; i++) {
+    let rect = selection[i] as RectangleNode
     let index = rect.name.lastIndexOf("/")
     let gifName = rect.name
     if (index!=-1){
@@ -809,12 +810,57 @@ function sliceToGif(myArgs){
     }
     gifName = gifName.replace("/","").replace("\\","")
 
+    // 获取自定义延迟数
+    //  slicename#100ms
+    let re = new RegExp("#[0-9]*ms");
+    if ( re.test(rect.name) ){
+      let mark = rect.name.match(re).toString()
+      mark = mark.match("[0-9]+").toString();
+      if( mark != null ) {
+        let n = Number(mark)
+        if ( n != NaN )
+          delay = n;
+      }
+    }
     rect.exportAsync({format: "PNG", suffix: "", contentsOnly: true, constraint: {type: "SCALE", value: 1}}).then(
-      (res) => { postMsg("sliceToGif", [res,i,total, gifName, delay]) },// 成功
+      (res) => { postMsg("sliceToGif", [res,i,total, gifName, delay])},// 成功
       (err) => { console.log(err) } // 失败
     )
   }
 }
+
+// 按层级排序
+// 目前仅能做到 父对象相同的层级排序
+function sortByChildIndex( nodes ){
+  let arr = [];
+  let i2 = -1;
+  for (let i=0;i<nodes.length; i++) {
+    let rect = nodes[i] as RectangleNode;
+    let searched = arr.filter(_data =>_data.parentID===rect.parent.id);
+    i2 = rect.parent.children.lastIndexOf( rect );
+    if( searched.length>0 )
+    {
+      searched[0].children.push( {node:rect, value:i2} );
+    } else {
+      arr.push( {
+          parentID:rect.parent.id,
+          children:[{node:rect, value:i2}]
+        } );
+    }
+  }
+
+  var newarr = []
+  for( let i=0; i<arr.length; i++){
+    let _data = arr[i];
+    _data.children.sort( function(a, b){
+        return (a.value - b.value)
+    } );
+    for( let j=0; j<_data.children.length; j++ ){
+      newarr.push( _data.children[j].node );
+    }
+  }
+  return newarr;
+} 
 
 // 插入svg
 function insertSvg(myArgs){

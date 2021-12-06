@@ -244,9 +244,11 @@ document.getElementById('btnSliceToPng').onclick = () => {
 // 切片合成gif
 let gifFrameNum = 0
 let gifFrameData = []
+let gifDelays = []
 document.getElementById('btnSliceToGif').onclick = () => {
     gifFrameNum = 0
     gifFrameData = []
+    gifDelays = []
 
     document.querySelector('#gifLink').innerHTML = ""
     let img = document.querySelector('#gifImg') as HTMLImageElement
@@ -266,21 +268,25 @@ function sliceToGifHandle(myArgs){
     let total = myArgs[2]
     let gifName = myArgs[3]
     let delay = myArgs[4]
-
     let img = new Image;
     img.src = URL.createObjectURL(new Blob([imData.buffer]))
     img.onload = function(){
         gifFrameNum ++
         gifFrameData.push({'index':index, 'img':img })
+        gifDelays.push(delay);
         if (gifFrameNum >= total){
 
         // 排序, 避免异步操作时图片可能不按顺序添加
-        let keysSorted = Object.keys(gifFrameData).sort(function(a,b){return gifFrameData[b]-gifFrameData[a]})
-        let newD = []
-        for(let i=0;i<keysSorted.length;i++){
-            newD[keysSorted[i]]=gifFrameData[keysSorted[i]];
+        let keysSorted = Object.keys(gifFrameData).sort(function(a,b){
+            return gifFrameData[b]-gifFrameData[a]
+        })
+        let newData = []
+        let newDelays = []
+        for(let key of keysSorted ){
+            newData.push( gifFrameData[key] );
+            newDelays.push( gifDelays[key] );
         }
-        GifHelper.createGif(newD,gifName,delay)
+        GifHelper.createGif(newData, gifName, newDelays );
         }
     }
 }
